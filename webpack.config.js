@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/app.ts',
   devtool: 'source-map',
   output: {
@@ -57,7 +57,12 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        use: 'ts-loader',
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            ignoreDiagnostics: [2339],
+          },
+        }],
         exclude: /node_modules/,
       },
       {
